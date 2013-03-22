@@ -1,0 +1,127 @@
+/* Container */
+.dk_container {
+	outline: 0;
+	
+	background-color: #eee;
+	
+	border: 1px solid #c5c5c5;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+	
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.1,#e9e9e9),color-stop(0.98,#f6f6f6),color-stop(0.99,#fff));
+	background-image: -webkit-linear-gradient(center bottom,#e9e9e9 10%,#f6f6f6 98%,#fff 99%);
+	background-image: -moz-linear-gradient(center bottom,#e9e9e9 10%,#f6f6f6 98%,#fff 99%);
+	background-image: -ms-linear-gradient(center bottom,#e9e9e9 10%,#f6f6f6 98%,#fff 99%);
+	background-image: -o-linear-gradient(center bottom,#e9e9e9 10%,#f6f6f6 98%,#fff 99%);
+	background-image: linear-gradient(center bottom,#e9e9e9 10%,#f6f6f6 98%,#fff 99%);
+		
+	-webkit-box-shadow:	0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	-moz-box-shadow:	0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	box-shadow:			0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+.dk_container a {
+	cursor: pointer;
+}
+
+.dk_container:hover {
+	background-color: #f5f5f5;
+	
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.1,#f4f4f4),color-stop(0.98,#fff));
+	background-image: -webkit-linear-gradient(center bottom,#e9e9e9 10%,#fff 98%);
+	background-image: -moz-linear-gradient(center bottom,#e9e9e9 10%,#fff 98%);
+	background-image: -ms-linear-gradient(center bottom,#e9e9e9 10%,#fff 98%);
+	background-image: -o-linear-gradient(center bottom,#e9e9e9 10%,#fff 98%);
+	background-image: linear-gradient(center bottom,#e9e9e9 10%,#fff 98%);
+}
+
+.dk_container:active, .dk_open {
+	background-color: #e5e5e5;
+	
+	-webkit-box-shadow:	inset 0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	-moz-box-shadow:	inset 0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	box-shadow:			inset 0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+}
+
+/* Toggle */
+.dk_toggle {
+	display: inline-block;
+	padding: 6px 10px;
+	
+	
+	background-image: url('../img/dropdown.png');
+	background-repeat: no-repeat;
+	background-position: 97% center;
+		
+}
+.dk_toggle:hover {
+	color: #333;
+}
+.dk_toggle:active, .dk_open .dk_toggle {
+	color: #333;
+	background-color: #e5e5e5;
+	
+	-webkit-box-shadow:	inset 0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	-moz-box-shadow:	inset 0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	box-shadow:			inset 0px 2px 3px 0px rgba(0, 0, 0, 0.07);
+	
+    text-shadow: rgba(255, 255, 255, .8) 0 1px 0;
+}
+
+.dk_open .dk_toggle {
+	color: #888;
+}
+
+/* Focus State */
+.dk_focus:focus {
+	border-color: #e04e3b; 
+}
+.dk_focus .dk_toggle {
+}
+  
+/* Open State */
+.dk_open {}
+.dk_open .dk_toggle {}
+
+/* Options Menu */
+.dk_options {
+	left: 2px;
+	width: 98%;
+	margin-top: 1px;
+	border: 1px solid #e04e3b;
+	border-top: none;
+	
+	z-index: 101;
+
+	-webkit-box-shadow:	0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow:	0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+	box-shadow:			0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+}
+.dk_options a {
+	background-color: #fff;
+	/*border-bottom: 1px solid #ddd;*/
+	padding: 6px 10px;
+}
+.dk_options li:last-child a {
+	border-bottom: none;
+}
+.dk_options a:hover {
+	background-color: #fbe9e7;
+	color: #e04e3b;
+}
+.dk_option_current a, .dk_option_current a:hover {
+	background-color: #e04e3b;
+	color: #fff;
+}
+
+/* Inner options */
+.dk_options_inner {
+  max-height: 250px;
+ }
+
+/* Set a width property here */
+.dk_options_inner,
+.dk_touch .dk_options {}
