@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-ru">
 <head>
-  <title>Posters</title>
+  <title>Стены стерпят — невыносимо крутые плакаты!</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  
+<!--[if !IE 7]>
+	<style type="text/css">
+		#wrapper {display:table;height:100%}
+	</style>
+<![endif]-->
+  
 </head>
-<body>
+<body class="long-page">
 
 <%= yield %>
 
