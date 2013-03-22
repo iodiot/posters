@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Poster.delete_all
+Poster.create(title: 'Cat and orange portal',	description: '', price: 120.0, image: 'orange_portal.jpg')
+Poster.create(title: 'Cat and blue portal', 	description: '', price: 120.0, image: 'blue_portal.jpg')
+Poster.create(title: 'Final answer', 					description: '', price: 100.0, image: '42.jpg')
+
+puts 'Default entries were added into posters.'
+
