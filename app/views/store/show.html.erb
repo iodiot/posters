@@ -1,0 +1,117 @@
+	<div id="wrapper">
+		<header>
+			<div class="page">
+				<h1 id="logo"><a href="#">Стены стерпят</a></h1>
+				<h2>Невыносимо крутые плакаты!</h2>
+				<ul id="links">
+					<li class="vk icon">ВКонтакте: <a href="#" title="ВКонтакте: wallsneverblush">wallsneverblush</a></li>
+					<li class="instagram icon">Instagram: <a href="#" title="Instagram: wallsneverblush">wallsneverblush</a></li>
+					<li class="twitter icon">Twitter: <a href="#" title="Twitter: wallsneverblush">wallsneverblush</a></li>
+					<li><a href="#">про нас</a></li>
+					<li><a href="#">про доставку и оплату</a></li>
+				</ul>
+				<label class="toggle" title="Включите, чтобы спрятать всяческую непристойность">
+					Безопасный режим<input type='checkbox'/><span><b></b></span>
+				</label>
+			</div>
+			<hr />
+		</header>
+		
+		<div class="page" id="nav">
+		
+			<div id="cart">
+				<a class="navblock" href="#">
+					<u>Корзина</u>
+					<i id="cart-counter">пусто</i>
+				</a>
+				<a id="goto-checkout" href="#">Оформить заказ<b></b></a>
+			</div>
+			
+			<div id="searchbox">
+				<form id="search-form" class="navblock" action="">
+					<label id="search" for="input-search">
+						<input id="input-search" type="text" placeholder="Поиск плакатов..." tabindex="1">
+					</label>
+					<input id="go-search" type="submit" value="Найти" tabindex="2">
+				</form>
+				<a id="random-search" href="#">			
+					<b></b><span>Что бы поискать?</span>
+				</a>
+			</div>
+			
+			<ul id="tags">
+				<li class="back-to-top"><a href="#"><em class="arrow">↑</em> <u>Наверх</u></a></li>
+				
+				<li class="supertag"><a href="#"><u>Всё подряд</u> <i>241</i></a></li>
+				<li class="supertag"><a href="#"><u>Новинки</u> <i>23</i></a></li>
+				<li class="supertag"><a href="#"><u>Избранное</u> <i>67</i></a></li>
+				
+				<li class="divider"> </li>
+				
+				<li><a href="#"><u>Книги</u> <i>10</i></a></li>
+				<li><a href="#"><u>Программирование</u> <i>13</i></a></li>
+				<li><a href="#"><u>Математика</u> <i>6</i></a></li>
+				<li><a href="#"><u>Фильмы</u> <i>21</i></a></li>
+				<li><a href="#"><u>Космос</u> <i>32</i></a></li>
+				<li class="chosen"><a href="#"><u>Игры</u> <i>23</i></a></li>
+				<li><a href="#"><u>За рулем</u> <i>16</i></a></li>
+				<li><a href="#"><u>Интернет</u> <i>17</i></a></li>
+				<li><a href="#"><u>Apple</u> <i>21</i></a></li>
+				<li><a href="#"><u>Девушки</u> <i>14</i></a></li>
+				<li><a href="#"><u>Наука</u> <i>20</i></a></li>
+			</ul>
+			
+		</div>
+
+		<div class="page" id="page-title">
+			<div id="page-icon-before"></div><img id="page-icon" src="img/icons/games.png" /><div id="page-icon-after"></div>
+			<a id="link-back" class="tag-like" href="#"><em class="arrow">↑</em> <span>Вернуться в категорию Игры</span> <em class="arrow">↑</em></a>
+		</div>
+		
+		<div id="item-page">
+			<div id="preview">
+				<div id="preview-frame"><%= image_tag "posters/" + @poster.image %></div>
+			</div>
+			<div id="details">
+				<h1><%= @poster.title %></h1>
+				<ul id="item-tags">
+					<li><a href="#">Игры</a></li>
+					<li><a href="#">Portal</a></li>
+					<li><a href="#">Коты</a></li>
+					<li><a href="#">Комплекты</a></li>
+				</ul>
+				<p><%= @poster.description %></p>
+				<form id="form-add" method="post">
+					<div id="paper-size-block">
+						<label class="paper-size A2" title="420 мм × 594 мм"><input type="radio" id="paper-size-A2" name="paper-size" tabindex="3" checked="true" /><span>A2</span></label>
+						<label class="paper-size A3" title="297 мм × 420 мм"><input type="radio" id="paper-size-A3" name="paper-size" tabindex="4" /><span>A3</span></label>
+						<span id="paper-size-hint"><em class="arrow">←</em> размер</span>
+					</div>
+					<div id="variation-block">
+						<select class="dk" name="variation" tabindex="5">
+							<option value="white">На белом фоне</option>
+							<option value="black">На черном фоне</option>
+							<option value="gray">На сером фоне</option>
+						</select>
+					</div>
+					<div id="add-block">
+						<em id="price"><span><%= @poster.price %></span> грн.</em>
+						<button class="big-button" id="add-button" name="add-button"  tabindex="6"><em>Шикарно!</em><b>Заверните!</b><i></i></button>
+					</div>					
+				</form>
+			</div>
+		</div>
+		
+		<div id="push"></div>
+		
+	</div>
+	
+	<footer>
+		<span>И не переживайте. Стены всё стерпят.<br/>© 2013</span>
+	</footer>
+	
+	<!------------ Script ------------>
+	
+	<!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+

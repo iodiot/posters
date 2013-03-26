@@ -1,10 +1,9 @@
 Posters::Application.routes.draw do
-  get "store/index"
+  root to: "store#index", as: "store"
+  match "/posters/:id" => "store#show"
 
-  resources :posters
-  
-  root to: 'store#index', as: 'store'
-  
+	resources :posters
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

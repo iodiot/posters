@@ -82,10 +82,10 @@
 				
 				<% @posters.each do |p| %>
 					<li class="item x2">
-						<a href="#" tabindex="3">
+						<%= link_to poster_path(p) do %>
 							<%= image_tag "posters/" + p.image, :class => "lazy" %>
 							<div class="item-info"><span><%= p.title %></span><em><%= p.price %></em></div>
-						</a>
+						<% end %>
 					</li>
 				<% end %>	
 			
