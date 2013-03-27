@@ -79,7 +79,6 @@
 		
 		<div id="showcase" class="page" style="text-align: center">
 			<ul> 
-				
 				<% @posters.each do |p| %>
 					<li class="item x2">
 						<%= link_to poster_path(p) do %>
@@ -92,14 +91,19 @@
 			</ul>
 			
 			<ul id="pagination">
-				<li class="page-number"><a href="#">1</a></li>
-				<li class="page-number"><a href="#">2</a></li>
-				<li class="page-number chosen"><a href="#">3</a></li>
-				<li class="page-number"><a href="#">4</a></li>
-				<li class="page-number"><a href="#">5</a></li>
-				<li class="page-number"><a href="#">6</a></li>
-				<li>...</li>
-				<li class="page-number"><a href="#">35</a></li>
+				
+				<% (1..@pages_count).each do |i| %>
+					<% if i == @current_page %>
+					<li class="page-number chosen">
+					<% else %>
+					<li class="page_number">
+					<% end %>
+					<%= link_to :page => i do %>
+					<%= i %>
+					<% end %>				
+					</li>
+				<% end %>
+			
 			</ul>	
 			<div id="pagination-buttons">
 				<a href="#"><em class="arrow">←</em> Назад</a>
@@ -116,9 +120,3 @@
 		<span>И не переживайте. Стены всё стерпят.<br/>© 2013</span>
 	</footer>
 	
-	<!------------ Script ------------>
-	
-	<!-- jQuery -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-
-
