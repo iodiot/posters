@@ -7,7 +7,7 @@ class StoreController < ApplicationController
   	n = @current_page * POSTERS_PER_PAGE - 1
   	
   	@posters = Poster.order(:title)
-  	@posters = @posters[n..n + POSTERS_PER_PAGE - 1]
+  	@posters = @posters[n..n + POSTERS_PER_PAGE - 1] || []
   	
   	@pages_count = Poster.count / POSTERS_PER_PAGE
   end

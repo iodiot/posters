@@ -1,10 +1,10 @@
-$("img.lazy").lazyload({});
+//$("img.lazy").lazyload({});
 // Add <noscript> with original src for each lazy image
 
-$(".dk").dropkick({
-	startSpeed: 0,
-	change: function() {}
-});
+//$(".dk").dropkick({
+//	startSpeed: 0,
+//	change: function() {}
+//});
 
 var fixMenus = $('body').hasClass("long-page");
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
 	$("#input-search").focus( function() { $("#search").addClass("focused"); } );
 	$("#input-search").blur( function() { $("#search").removeClass("focused"); } );
 	
-	$("#phone").mask("+38 (999) 999-99-99");
+	//$("#phone").mask("+38 (999) 999-99-99");
 	
 	// Debug
 	var searchSuggestions = [

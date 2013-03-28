@@ -106,8 +106,23 @@
 			
 			</ul>	
 			<div id="pagination-buttons">
-				<a href="#"><em class="arrow">←</em> Назад</a>
-				<a href="#" tabindex="14">Дальше <em class="arrow">→</em></a>
+			
+				<% if @current_page - 1 != 0 %>
+					<%= link_to :page => @current_page - 1 do %>
+					<em class="arrow">←</em> Назад</a>
+					<% end %>
+				<% else %>
+					<em class="arrow">←</em> Назад</a>
+				<% end %>
+				
+				<% if @current_page != @pages_count %>
+					<%= link_to :page => @current_page + 1, :tabIndex => 14 do %>
+					Дальше <em class="arrow">→</em>
+					<% end %>
+				<% else %>
+					Дальше <em class="arrow">→</em>
+				<% end %>
+				
 			</div>
 			
 		</div>
