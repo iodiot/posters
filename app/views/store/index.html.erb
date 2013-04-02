@@ -69,7 +69,7 @@
 			<h4><a href="#">« Вернуться к плакатам</a></h4>-->
 			
 			<h3>Все подряд</h3>
-			<h4>У нас <strong>241 плакат</strong>, и мы постоянно придумываем новые!</h4>
+			<h4>У нас <strong><%= @posters_count %> плакат</strong>, и мы постоянно придумываем новые!</h4>
 			<div class="switch" id="sorting">
 				<a href="#">по дате</a>
 				<a href="#" class="chosen">загадочно</a>
@@ -90,40 +90,8 @@
 			
 			</ul>
 			
-			<ul id="pagination">
+			<%= paginate @posters %>
 				
-				<% (1..@pages_count).each do |i| %>
-					<% if i == @current_page %>
-					<li class="page-number chosen">
-					<% else %>
-					<li class="page_number">
-					<% end %>
-					<%= link_to :page => i do %>
-					<%= i %>
-					<% end %>				
-					</li>
-				<% end %>
-			
-			</ul>	
-			<div id="pagination-buttons">
-			
-				<% if @current_page - 1 != 0 %>
-					<%= link_to :page => @current_page - 1 do %>
-					<em class="arrow">←</em> Назад</a>
-					<% end %>
-				<% else %>
-					<em class="arrow">←</em> Назад</a>
-				<% end %>
-				
-				<% if @current_page != @pages_count %>
-					<%= link_to :page => @current_page + 1, :tabIndex => 14 do %>
-					Дальше <em class="arrow">→</em>
-					<% end %>
-				<% else %>
-					Дальше <em class="arrow">→</em>
-				<% end %>
-				
-			</div>
 			
 		</div>
 		

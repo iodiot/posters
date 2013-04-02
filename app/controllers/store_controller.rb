@@ -1,15 +1,8 @@
 class StoreController < ApplicationController
-	POSTERS_PER_PAGE = 1
 
   def index
-  	@current_page = params[:page].to_i || 1
-  	
-  	n = @current_page * POSTERS_PER_PAGE - 1
-  	
-  	@posters = Poster.order(:title)
-  	@posters = @posters[n..n + POSTERS_PER_PAGE - 1] || []
-  	
-  	@pages_count = Poster.count / POSTERS_PER_PAGE
+  	@posters = Poster.order(:title).page(params[:page]).per(1) # one user per page, for testing	
+  	@posters_count = Poster.count
   end
   
   def show
