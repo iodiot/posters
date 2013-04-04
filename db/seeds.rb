@@ -7,16 +7,19 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Poster.delete_all
-p1 = Poster.create(title: 'Cat and orange portal',	description: '', price: 120.0, image: 'orange_portal.jpg')
-p2 = Poster.create(title: 'Cat and blue portal', 	description: '', price: 120.0, image: 'blue_portal.jpg')
-Poster.create(title: 'Final answer', 					description: '', price: 100.0, image: '42.jpg')
-
 Tag.delete_all
-Tag.create(name: 'cat',		poster_id: p1.id)
-Tag.create(name: 'portal',	poster_id: p1.id)
-Tag.create(name: 'cat',		poster_id: p2.id)
-Tag.create(name: 'portal',	poster_id: p2.id)
 
-puts 'Test data was succesfully uploaded into db'
+(1..100).each do
+	p1 = Poster.create(title: 'Cat and orange portal',	description: '', price: 120.0, image: 'orange_portal.jpg', obscenity: Random.rand(2) == 0)
+	p2 = Poster.create(title: 'Cat and blue portal', 	description: '', price: 120.0, image: 'blue_portal.jpg', obscenity: Random.rand(2) == 0)
+	Poster.create(title: 'Final answer', 					description: '', price: 100.0, image: '42.jpg', obscenity: Random.rand(2) == 0)
+	
+	Tag.create(name: 'Cat',		poster_id: p1.id)
+	Tag.create(name: 'Portal',	poster_id: p1.id)
+	Tag.create(name: 'Cat',		poster_id: p2.id)
+	Tag.create(name: 'Portal',	poster_id: p2.id)
+end
+
+puts "#{Poster.count} posters were succesfully created..."
 
 

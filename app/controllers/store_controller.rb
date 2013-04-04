@@ -1,7 +1,11 @@
 class StoreController < ApplicationController
+	def initialize
+		@safe_mode = true
+		super
+	end
 
   def index
-  	@posters = Poster.order(:title).page(params[:page]).per(1) # one user per page, for testing	
+  	@posters = Poster.order("RANDOM()").page(params[:page]).per(5)
   	@posters_count = Poster.count
   end
   
