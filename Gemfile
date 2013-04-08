@@ -39,3 +39,6 @@ gem 'jquery-rails'
 
 # Pagination
 gem 'kaminari'
+
+# Image procession (poster pixelization)
+gem 'rmagick'

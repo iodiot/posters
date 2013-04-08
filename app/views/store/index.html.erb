@@ -11,7 +11,7 @@
 					<li><a href="#">про доставку и оплату</a></li>
 				</ul>
 				<label class="toggle" title="Включите, чтобы спрятать всяческую непристойность">
-					Безопасный режим<%= check_box_tag '', '', @safe_mode %><span><b></b></span>
+					Безопасный режим<input type="checkbox" id="safemode" /><span><b></b></span>
 					
 				</label>
 			</div>
@@ -83,16 +83,24 @@
 				<% @posters.each do |p| %>
 					<li class="item x2">
 						<%= link_to poster_path(p) do %>
-							<%= image_tag "posters/" + p.image, :class => "lazy" %>
-							<div class="item-info"><span><%= @safe_mode && p.obscenity ? '!@#$%^&*' : p.title %></span><em><%= p.price.to_i %></em></div>
+							<% if p.censored %>
+								<%= image_tag "posters/" + p.image, :class => "lazy obscene" %>
+								<%= image_tag "posters/CENSORED_" + p.image.gsub(/.jpg/, '.png'), :class => "lazy censored" %>
+								<div class="item-info">
+									<span class="obscene"><%= p.title %></span>
+									<span class="censored">^*&&^*</span>
+									<em><%= p.price.to_i %> грн.</em>
+								</div>
+							<% else %>
+								<%= image_tag "posters/" + p.image, :class => "lazy" %>
+								<div class="item-info"><span><%= p.title %></span><em><%= p.price.to_i %> грн.</em></div>
+							<% end %>
 						<% end %>
 					</li>
-				<% end %>	
-			
+				<% end %>			
 			</ul>
 			
-			<%= paginate @posters %>
-				
+			<%= paginate @posters %>	
 			
 		</div>
 		

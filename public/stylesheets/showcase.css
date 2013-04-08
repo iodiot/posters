@@ -43,11 +43,11 @@
     -moz-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out;
 	
-	background: #eee url("bg_item.png") repeat-x; 
+	background: #eee url("/images/bg_item.png") repeat-x; 
 }
 
 .item a:hover, .item a:focus {	
-	background: #eee url("bg_item.png") repeat-x; 
+	background: #eee url("/images/bg_item.png") repeat-x; 
 	background: #bbb; 
 }
 
@@ -262,3 +262,13 @@ a:hover .item-info em {
 }
 
 /**********************************************************/
+
+.censored{
+	display: none !important;
+}
+.safemode .censored {
+	display: block !important;
+}
+.safemode .obscene {
+	display: none !important;
+}

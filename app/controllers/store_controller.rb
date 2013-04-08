@@ -1,6 +1,5 @@
 class StoreController < ApplicationController
 	def initialize
-		@safe_mode = true
 		super
 	end
 
