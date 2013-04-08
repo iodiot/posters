@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408104703) do
+ActiveRecord::Schema.define(:version => 20130408133835) do
+
+  create_table "poster_tag_items", :force => true do |t|
+    t.integer  "poster_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "posters", :force => true do |t|
     t.string   "title",       :default => ""
@@ -21,13 +28,14 @@ ActiveRecord::Schema.define(:version => 20130408104703) do
     t.datetime "updated_at",                     :null => false
     t.string   "image",       :default => ""
     t.boolean  "censored",    :default => false
+    t.string   "url",         :default => ""
   end
 
   create_table "tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "poster_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "url",        :default => ""
   end
 
 end

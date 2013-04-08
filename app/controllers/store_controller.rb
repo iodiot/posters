@@ -4,8 +4,12 @@ class StoreController < ApplicationController
 	end
 
   def index
-  	@posters = Poster.order("RANDOM()").page(params[:page]).per(5)
+  	@order = params[:order] || 'mysterious'
+		  	 	
+  	@posters = Poster.order(@order == 'new' ? :updated_at : 'RANDOM()').page(params[:page]).per(5)
+  	
   	@posters_count = Poster.count
+  	@categories = Tag.all
   end
   
   def show

@@ -49,17 +49,14 @@
 				
 				<li class="divider"> </li>
 				
-				<li><a href="#"><u>Книги</u> <i>10</i></a></li>
-				<li><a href="#"><u>Программирование</u> <i>13</i></a></li>
-				<li><a href="#"><u>Математика</u> <i>6</i></a></li>
-				<li><a href="#"><u>Фильмы</u> <i>21</i></a></li>
-				<li><a href="#"><u>Космос</u> <i>32</i></a></li>
-				<li><a href="#"><u>Игры</u> <i>23</i></a></li>
-				<li><a href="#"><u>За рулем</u> <i>16</i></a></li>
-				<li><a href="#"><u>Интернет</u> <i>17</i></a></li>
-				<li><a href="#"><u>Apple</u> <i>21</i></a></li>
-				<li><a href="#"><u>Девушки</u> <i>14</i></a></li>
-				<li><a href="#"><u>Наука</u> <i>20</i></a></li>
+				<% @categories.each do |c| %>
+					<li>
+					<%= link_to "/tags/#{c.url}" do %>
+					<u><%= c.name %></u><i><%= " #{c.posters.count}" %></i>
+					<% end %>
+					</li>
+				<% end %> 
+
 			</ul>
 			
 		</div>
@@ -72,9 +69,9 @@
 			<h3>Все подряд</h3>
 			<h4>У нас <strong><%= @posters_count %> плакат</strong>, и мы постоянно придумываем новые!</h4>
 			<div class="switch" id="sorting">
-				<a href="#">по дате</a>
-				<a href="#" class="chosen">загадочно</a>
-				<a href="#">по популярности</a>
+				<%= link_to 'по дате', {order: 'new'}, class: @order == 'new' ?'chosen' : '' %> 
+				<%= link_to 'загадочно', {order: 'mysterious'}, class: @order == 'mysterious' ?'chosen' : '' %> 
+				<%= link_to 'по популярности', {order: 'popular'}, class: @order == 'popular' ?'chosen' : '' %> 
 			</div>
 		</div>
 		
@@ -82,13 +79,13 @@
 			<ul> 
 				<% @posters.each do |p| %>
 					<li class="item x2">
-						<%= link_to poster_path(p) do %>
+						<%= link_to "/posters/#{p.id}-#{p.url}" do %>
 							<% if p.censored %>
 								<%= image_tag "posters/" + p.image, :class => "lazy obscene" %>
 								<%= image_tag "posters/CENSORED_" + p.image.gsub(/.jpg/, '.png'), :class => "lazy censored" %>
 								<div class="item-info">
 									<span class="obscene"><%= p.title %></span>
-									<span class="censored">^*&&^*</span>
+									<span class="censored"><%= p.title.split(//).shuffle.join %></span>
 									<em><%= p.price.to_i %> грн.</em>
 								</div>
 							<% else %>

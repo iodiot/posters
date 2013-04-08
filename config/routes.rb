@@ -1,6 +1,9 @@
 Posters::Application.routes.draw do
-  root to: "store#index", as: "store"
-  match "/posters/:id" => "store#show"
+  root to: 'store#index', as: 'store'
+  
+  match '/tags/:url' => 'store#index'
+  match '/posters/:id' => 'store#show'
+	match '/posters/:id-:url' => 'store#show'
 
 	resources :posters
 
