@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408133835) do
+ActiveRecord::Schema.define(:version => 20130419113659) do
 
   create_table "poster_tag_items", :force => true do |t|
     t.integer  "poster_id"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20130408133835) do
     t.string   "image",       :default => ""
     t.boolean  "censored",    :default => false
     t.string   "url",         :default => ""
+    t.text     "auto_keys",   :default => ""
+    t.text     "manual_keys", :default => ""
+  end
+
+  create_table "search_suggestions", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tags", :force => true do |t|

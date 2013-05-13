@@ -42,3 +42,7 @@ gem 'kaminari'
 
 # Image procession (poster pixelization)
 gem 'rmagick'
+
+# Unicode support (replacement for String.upcase, for example)
+gem 'unicode'
+

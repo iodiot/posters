@@ -15,4 +15,10 @@ module Toolkit
 			end
 		end
 	end
+	
+	def pluralize_russian(n, one, few, many)
+		return one if (n % 10 == 1) && (n % 100 != 11)
+		return few if (2..4).include?(n % 10) && !(12..14).include?(n % 100)
+		many
+	end
 end

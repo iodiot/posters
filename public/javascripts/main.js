@@ -93,23 +93,17 @@ $(document).ready(function() {
 	
 	$("#phone").mask("+38 (999) 999-99-99");
 	
-	// Debug
-	var searchSuggestions = [
-		"God of War", "осторожно", "собака",
-		"кин-дза-дза", "Instagram", "Portal",
-		"How I Met Your Mother", "коты", "светофор",
-		"The Big Bang Theory", "House", "404",
-		"курение", "синхрофазотрон", "эволюция",
-		"Tetris", "Firefox", "Большой Лебовский",
-		"Space Invaders", "пластилин", "северное сияние"
-	];
 	
-	$("#random-search").click( function() { 
-		var i = Math.floor(Math.random()*(searchSuggestions.length));
-		$searchbox.val(searchSuggestions[i]).focus();
-		$searchbox.val($searchbox.val());
-		return 0;
-	} );
+	$('#random-search').click( function() {
+		$.ajax({
+			dataType: 'text',
+			url: '/store/get_ss',
+			success: function(response) {
+				$searchbox.val(response).focus();
+				$searchbox.val($searchbox.val());
+			}
+		});
+	});
 	
 	// Debug
 	$("#cart a.navblock").click(function() { 
