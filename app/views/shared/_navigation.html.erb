@@ -1,0 +1,42 @@
+<div class="page" id="nav">
+
+	<div id="cart">
+		<a class="navblock" href="#">
+			<u>Корзина</u>
+			<i id="cart-counter">пусто</i>
+		</a>
+		<a id="goto-checkout" href="#">Оформить заказ<b></b></a>
+	</div>
+	
+	<div id="searchbox">
+				
+		<%= form_tag "/search", method: "get", id: "search-form", class: "navblock" do %>
+			<%= label_tag "input-search", id: "search" do %>
+				<%= text_field_tag "input-search", @search_string, placeholder: "Поиск плакатов..." %>
+			<% end %>
+			<%= submit_tag "Найти", id: "go-search" %>
+		<% end %>
+			
+		<a id="random-search" href="#"><b></b><span>Что бы поискать?</span></a>
+	</div>
+	
+	<ul id="tags">
+		<li class="back-to-top"><a><em class="arrow">↑</em> <u>Наверх</u> <em class="arrow">↑</em></a></li>
+		
+		<li class="supertag chosen"><a href="#"><u>Всё подряд</u> <i>241</i></a></li>
+		<li class="supertag"><a href="#"><u>Новинки</u> <i>23</i></a></li>
+		<li class="supertag"><a href="#"><u>Избранное</u> <i>67</i></a></li>
+		
+		<li class="divider"> </li>
+		
+		<% @categories.each do |c| %>
+			<li>
+			<%= link_to "/tags/#{c.url}" do %>
+			<u><%= c.name %></u><i><%= " #{c.posters.count}" %></i>
+			<% end %>
+			</li>
+		<% end %> 
+
+	</ul>
+	
+</div>

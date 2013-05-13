@@ -1,0 +1,122 @@
+<div class="page800" id="page-title">
+	<div id="page-icon-before"></div><img id="page-icon" src="img/icons/cart.png" /><div id="page-icon-after"></div>
+	<h3>Корзина</h3>
+	<a id="link-back" class="tag-like" href="#"><em class="arrow">←</em> <span>Вернуться к выбору плакатов</span></a>
+</div>
+
+<div id="cart-details">
+	<table id="cart-list">
+		<tbody>
+			<tr>
+				<td class="item-img"><a href="#"><img src="img/posters/blue_portal.jpg"/></a></td>
+				<td class="item-details">
+					<h2><a href="#">Кот и синий портал</a></h2>
+					<p class="cart-item-details">
+						Размер: <strong>A2</strong><br/>
+						Вариант: <strong>На белом фоне</strong>								
+					</p>
+				</td>
+				<td class="item-quantity">
+					<p>
+						<input type="text" value="1">
+						<span>шт. × 120 грн.</span>
+					</p>
+					<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
+				</td>
+				<td class="item-price">
+					120 грн.
+				</td>
+			</tr>
+			<tr>
+				<td class="item-img"><a href="#"><img src="img/posters/orange_portal.jpg"/></a></td>
+				<td class="item-details">
+					<h2><a href="#">Кот и оранжевый портал</a></h2>
+					<p class="cart-item-details">
+						Размер: <strong>A2</strong><br/>
+						Вариант: <strong>На белом фоне</strong>								
+					</p>
+				</td>
+				<td class="item-quantity">
+					<p>
+						<input type="text" value="1">
+						<span>шт. × 120 грн.</span>
+					</p>
+					<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
+				</td>						
+				<td class="item-price">
+					120 грн.
+				</td>
+			</tr>
+			<tr>
+				<td class="item-img"><a href="#"><img src="img/posters/logo.jpg"/></a></td>
+				<td class="item-details">
+					<h2><a href="#">Стены стерпят</a></h2>
+					<p class="cart-item-details">
+						Размер: <strong>A1</strong><br/>							
+					</p>
+				</td>
+				<td class="item-quantity">
+					<p>
+						<input type="text" value="2">
+						<span>шт. × 500 грн.</span>
+					</p>
+					<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
+				</td>						
+				<td class="item-price">
+					1000 грн.
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2" id="total">
+					Всего:
+				</td>
+				<td id="item-count">
+					4 плаката
+				</td>
+				<td id="total-price">
+					1240 грн.
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<div class="page800" id="checkout">
+	<p>Заказ доставит «<a href="http://novaposhta.ua/" target="_blank">Новая почта</a>».</p>
+	<p>Оплата — <strong>наложенным платежом</strong> (то есть, аж когда плакаты будут у вас).</p>
+	
+	<form id="checkout-form">
+	
+		<table id="checkout-table">
+		<tbody>
+		<tr>
+			<td class="label-cell"><label for="name">Имя <b title="Обязательное поле">•</b></label></td>
+			<td><input type="text" id="name" name="name" value="" maxlength="250"></td>
+		</tr>
+		<tr>
+			<td class="label-cell"><label for="email">E-mail <b title="Обязательное поле">•</b></label></td>
+			<td><input type="text" id="email" name="email" value="" maxlength="250"></td>
+		</tr>
+		<tr>
+			<td class="label-cell"><label for="phone">Телефон <b title="Обязательное поле">•</b></label></td>
+			<td><input type="text" id="phone" name="phone" value="" maxlength="250"></td>
+		</tr>
+		<tr>
+			<td class="label-cell"><label for="address">Адрес доставки <b title="Обязательное поле">•</b></label></td>
+			<td><input type="text" id="address" name="address" value="" maxlength="250"></td>
+			</tr>
+		<tr>
+			<td class="label-cell"><label for="message">Примечания к заказу <em>Любые дополнительные пожелания или вопросы; ответим на указанный e-mail.</em></label></td>
+			<td><textarea class="text" name="message" id="message"></textarea></td>
+		</tr>
+		<tr>
+			<td class="label-cell"></td>
+			<td class="button-cell"><button class="big-button" id="checkout-button" name="checkout-button">Оформить заказ</button><em>Мы позвоним, чтоб всё согласовать.</em></td>
+		</tr>
+		</tbody>
+		</table>
+		
+	</form>
+</div>

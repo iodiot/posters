@@ -20,8 +20,11 @@
   
 </head>
 <body class="long-page">
-
+<div id="wrapper">
+<%= render "shared/head" %>
+<%= render "shared/navigation" %>
 <%= yield %>
-
+<%= render "shared/foot" %>
+</div>
 </body>
 </html>

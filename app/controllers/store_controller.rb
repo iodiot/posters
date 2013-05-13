@@ -7,7 +7,7 @@ class StoreController < ApplicationController
 		super
 	end
 
-  def index
+  def home
     @order = params[:order] || "mysterious"
 		  	 	
   	@posters = Poster.order(@order == "new" ? :updated_at : "RANDOM()").page(params[:page]).per(12)
@@ -16,8 +16,12 @@ class StoreController < ApplicationController
   	@categories = Tag.all
   end
   
-  def show
+  def item
   	@poster = Poster.find(params[:id])
+  	@categories = Tag.all
+  end
+  
+  def cart
   end
   
   def get_ss
@@ -32,6 +36,6 @@ class StoreController < ApplicationController
   	@posters_count = @posters.count
   	@categories = Tag.all
   	
-		render action: :index
+		render action: :home
   end
 end

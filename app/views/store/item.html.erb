@@ -1,0 +1,37 @@
+<div class="page" id="page-title">
+	<div id="page-icon-before"></div><%= image_tag "icons/games.png", :id => "page-icon" %><div id="page-icon-after"></div>
+	<a id="link-back" class="tag-like" href="#"><em class="arrow">↑</em> <span>Вернуться в категорию Игры</span> <em class="arrow">↑</em></a>
+</div>
+
+<div id="item-page">
+	<div id="preview">
+		<div id="preview-frame"><%= image_tag "posters/" + @poster.image %></div>
+	</div>
+	<div id="details">
+		<h1><%= @poster.title %></h1>
+		<ul id="item-tags">
+			<% @poster.tags.each do |t| %>
+			<li><a href="#"><%= t.name %></a></li>
+			<% end %>
+		</ul>
+		<p><%= @poster.description %></p>
+		<form id="form-add" method="post">
+			<div id="paper-size-block">
+				<label class="paper-size A2" title="420 мм × 594 мм"><input type="radio" id="paper-size-A2" name="paper-size" tabindex="3" checked="true" /><span>A2</span></label>
+				<label class="paper-size A3" title="297 мм × 420 мм"><input type="radio" id="paper-size-A3" name="paper-size" tabindex="4" /><span>A3</span></label>
+				<span id="paper-size-hint"><em class="arrow">←</em> размер</span>
+			</div>
+			<div id="variation-block">
+				<select class="dk" name="variation" tabindex="5">
+					<option value="white">На белом фоне</option>
+					<option value="black">На черном фоне</option>
+					<option value="gray">На сером фоне</option>
+				</select>
+			</div>
+			<div id="add-block">
+				<em id="price"><span><%= @poster.price %></span> грн.</em>
+				<button class="big-button" id="add-button" name="add-button"  tabindex="6"><em>Шикарно!</em><b>Заверните!</b><i></i></button>
+			</div>					
+		</form>
+	</div>
+</div>
