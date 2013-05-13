@@ -11,27 +11,32 @@
 		<h1><%= @poster.title %></h1>
 		<ul id="item-tags">
 			<% @poster.tags.each do |t| %>
-			<li><a href="#"><%= t.name %></a></li>
+			<li><%= link_to t.name, "/tags/#{t.url}" %></li>
 			<% end %>
 		</ul>
 		<p><%= @poster.description %></p>
-		<form id="form-add" method="post">
+		
+		<%= form_tag "/cart", method: "post", id: "form-add" do %>
+			<%= hidden_field_tag "poster", @poster.id %>
 			<div id="paper-size-block">
-				<label class="paper-size A2" title="420 мм × 594 мм"><input type="radio" id="paper-size-A2" name="paper-size" tabindex="3" checked="true" /><span>A2</span></label>
-				<label class="paper-size A3" title="297 мм × 420 мм"><input type="radio" id="paper-size-A3" name="paper-size" tabindex="4" /><span>A3</span></label>
+				<%= label_tag nil, title: "420 мм × 594 мм", class: "paper-size A2" do %>
+					<%= radio_button_tag "paper-size", "A2", true, id: "paper-size-A2", tabindex: "3" %><span>A2</span>
+				<% end %>
+				<%= label_tag nil, title: "297 мм × 420 мм", class: "paper-size A3" do %>
+					<%= radio_button_tag "paper-size", "A3", false, id: "paper-size-A3", tabindex: "4" %><span>A3</span>
+				<% end %>
 				<span id="paper-size-hint"><em class="arrow">←</em> размер</span>
 			</div>
 			<div id="variation-block">
-				<select class="dk" name="variation" tabindex="5">
-					<option value="white">На белом фоне</option>
-					<option value="black">На черном фоне</option>
-					<option value="gray">На сером фоне</option>
-				</select>
+				<%= select_tag nil, "<option value='white'>На белом фоне</option><option value='black'>На черном фоне</option><option value='gray'>На сером фоне</option>".html_safe,
+					name: "variation_block", class: "dk", tabindex: "5" %>
 			</div>
 			<div id="add-block">
-				<em id="price"><span><%= @poster.price %></span> грн.</em>
-				<button class="big-button" id="add-button" name="add-button"  tabindex="6"><em>Шикарно!</em><b>Заверните!</b><i></i></button>
-			</div>					
-		</form>
+				<em id="price"><span><%= @poster.price.to_i %></span> грн.</em>
+				<%= button_tag name: "add-button", id: "add-button", class: "big-button", tabindex: 6 do %>
+				<em>Шикарно!</em><b>Заверните!</b><i></i>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>

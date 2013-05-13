@@ -1,16 +1,16 @@
 <div class="page" id="nav">
 
 	<div id="cart">
-		<a class="navblock" href="#">
+		<%= link_to "/cart", class: "navblock" do %>
 			<u>Корзина</u>
 			<i id="cart-counter">пусто</i>
-		</a>
+		<% end %>
 		<a id="goto-checkout" href="#">Оформить заказ<b></b></a>
 	</div>
 	
 	<div id="searchbox">
 				
-		<%= form_tag "/search", method: "get", id: "search-form", class: "navblock" do %>
+		<%= form_tag "/search", method: "post", id: "search-form", class: "navblock" do %>
 			<%= label_tag "input-search", id: "search" do %>
 				<%= text_field_tag "input-search", @search_string, placeholder: "Поиск плакатов..." %>
 			<% end %>

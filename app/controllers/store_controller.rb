@@ -8,6 +8,7 @@ class StoreController < ApplicationController
 	end
 
   def home
+  	@body_class = "long-page"
     @order = params[:order] || "mysterious"
 		  	 	
   	@posters = Poster.order(@order == "new" ? :updated_at : "RANDOM()").page(params[:page]).per(12)
@@ -17,11 +18,14 @@ class StoreController < ApplicationController
   end
   
   def item
+  	@body_class = ""
   	@poster = Poster.find(params[:id])
   	@categories = Tag.all
   end
   
   def cart
+   	@body_class = ""
+    @categories = Tag.all   
   end
   
   def get_ss
