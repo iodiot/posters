@@ -9,7 +9,11 @@
 		<tbody>
 			<% @buys.each do |b| %>
 				<tr>
-					<td class="item-img"><a href="#"><%= image_tag "posters/" + b.poster.image %></a></td>
+					<td class="item-img">
+						<%= link_to "/posters/#{b.poster.id}-#{b.poster.url}" do %>
+							<%= image_tag "posters/" + b.poster.image %>
+						<% end %>
+					</td>
 					<td class="item-details">
 						<h2><%= link_to b.poster.title, "/posters/#{b.poster.id}-#{b.poster.url}" %></h2>
 						<p class="cart-item-details">
@@ -19,10 +23,14 @@
 					</td>
 					<td class="item-quantity">
 						<p>
-							<input type="text" value="1">
+							<input type="text" value="<%= b.quantity %>">
 							<span>шт. × <%= b.poster.price.to_i %> грн.</span>
 						</p>
-						<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
+						<p>
+							<%= link_to "/remove-from-cart?id=#{b.id}", class: "remove-item" do %>
+								<i>×</i> <u>удалить</u></a>
+							<% end %>
+						</p>
 					</td>
 					<td class="item-price">
 						120 грн.

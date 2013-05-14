@@ -27,14 +27,31 @@ class StoreController < ApplicationController
   
   def add_to_cart
   	order = Order.find(session[:order_id])
-  
- 		buy = Buy.new(poster_id: params["poster-id"], 
+  	
+  	buy = Buy.new(poster_id: params["poster-id"], 
  			paper_size: params["paper-size"], paper_bg: params["paper-bg"], quantity: 1)
- 			
-		order.buys << buy
+  	
+  	# increase quantity of existing buyment if possible
+  	found = false
+  	order.buys.each do |b| 
+  		b.equal_to?(buy)
+  		if b.equal_to?(buy)
+  			found = true
+  			b.quantity += 1
+  			b.save!
+  			break
+  		end
+  	end
+		order.buys << buy if !found
 		order.save! 		
  			
  		redirect_to action: :cart
+  end
+  
+  def remove_from_cart
+  	Buy.destroy(params[:id]) if Buy.exists?(params[:id])
+  	
+  	redirect_to action: :cart
   end
   
   def cart
