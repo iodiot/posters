@@ -188,13 +188,13 @@
 
 /**********************************************************/
 
-#variation-block {
+#paper-bg-block {
 	display: block;
 	height: 40px;
 	margin-top: 10px;
 }
 
-#variation-block select {
+#paper-bg-block select {
 	width: 300px;
 }
 

@@ -97,7 +97,7 @@ $(document).ready(function() {
 	$('#random-search').click( function() {
 		$.ajax({
 			dataType: 'text',
-			url: '/store/get_ss',
+			url: '/store/get-ss',
 			success: function(response) {
 				$searchbox.val(response).focus();
 				$searchbox.val($searchbox.val());

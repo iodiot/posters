@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  poster_id: 1
+  order_id: 1
+  paper_size: MyString
+  paper_bg: MyString
+  quantity: 1
+
+two:
+  poster_id: 1
+  order_id: 1
+  paper_size: MyString
+  paper_bg: MyString
+  quantity: 1

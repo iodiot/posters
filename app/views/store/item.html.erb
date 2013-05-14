@@ -16,8 +16,8 @@
 		</ul>
 		<p><%= @poster.description %></p>
 		
-		<%= form_tag "/cart", method: "post", id: "form-add" do %>
-			<%= hidden_field_tag "poster", @poster.id %>
+		<%= form_tag "/add-to-cart", method: "post", id: "form-add" do %>
+			<%= hidden_field_tag "poster-id", @poster.id %>
 			<div id="paper-size-block">
 				<%= label_tag nil, title: "420 мм × 594 мм", class: "paper-size A2" do %>
 					<%= radio_button_tag "paper-size", "A2", true, id: "paper-size-A2", tabindex: "3" %><span>A2</span>
@@ -27,9 +27,9 @@
 				<% end %>
 				<span id="paper-size-hint"><em class="arrow">←</em> размер</span>
 			</div>
-			<div id="variation-block">
+			<div id="paper-bg-block">
 				<%= select_tag nil, "<option value='white'>На белом фоне</option><option value='black'>На черном фоне</option><option value='gray'>На сером фоне</option>".html_safe,
-					name: "variation_block", class: "dk", tabindex: "5" %>
+					name: "paper-bg", class: "dk", tabindex: "5" %>
 			</div>
 			<div id="add-block">
 				<em id="price"><span><%= @poster.price.to_i %></span> грн.</em>

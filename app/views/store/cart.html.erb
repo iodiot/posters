@@ -7,65 +7,28 @@
 <div id="cart-details">
 	<table id="cart-list">
 		<tbody>
-			<tr>
-				<td class="item-img"><a href="#"><img src="img/posters/blue_portal.jpg"/></a></td>
-				<td class="item-details">
-					<h2><a href="#">Кот и синий портал</a></h2>
-					<p class="cart-item-details">
-						Размер: <strong>A2</strong><br/>
-						Вариант: <strong>На белом фоне</strong>								
-					</p>
-				</td>
-				<td class="item-quantity">
-					<p>
-						<input type="text" value="1">
-						<span>шт. × 120 грн.</span>
-					</p>
-					<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
-				</td>
-				<td class="item-price">
-					120 грн.
-				</td>
-			</tr>
-			<tr>
-				<td class="item-img"><a href="#"><img src="img/posters/orange_portal.jpg"/></a></td>
-				<td class="item-details">
-					<h2><a href="#">Кот и оранжевый портал</a></h2>
-					<p class="cart-item-details">
-						Размер: <strong>A2</strong><br/>
-						Вариант: <strong>На белом фоне</strong>								
-					</p>
-				</td>
-				<td class="item-quantity">
-					<p>
-						<input type="text" value="1">
-						<span>шт. × 120 грн.</span>
-					</p>
-					<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
-				</td>						
-				<td class="item-price">
-					120 грн.
-				</td>
-			</tr>
-			<tr>
-				<td class="item-img"><a href="#"><img src="img/posters/logo.jpg"/></a></td>
-				<td class="item-details">
-					<h2><a href="#">Стены стерпят</a></h2>
-					<p class="cart-item-details">
-						Размер: <strong>A1</strong><br/>							
-					</p>
-				</td>
-				<td class="item-quantity">
-					<p>
-						<input type="text" value="2">
-						<span>шт. × 500 грн.</span>
-					</p>
-					<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
-				</td>						
-				<td class="item-price">
-					1000 грн.
-				</td>
-			</tr>
+			<% @buys.each do |b| %>
+				<tr>
+					<td class="item-img"><a href="#"><%= image_tag "posters/" + b.poster.image %></a></td>
+					<td class="item-details">
+						<h2><%= link_to b.poster.title, "/posters/#{b.poster.id}-#{b.poster.url}" %></h2>
+						<p class="cart-item-details">
+							Размер: <strong><%= b.paper_size %></strong><br/>
+							Вариант: <strong><%= b.paper_bg %></strong>								
+						</p>
+					</td>
+					<td class="item-quantity">
+						<p>
+							<input type="text" value="1">
+							<span>шт. × <%= b.poster.price.to_i %> грн.</span>
+						</p>
+						<p><a href="#" class="remove-item"><i>×</i> <u>удалить</u></a></p>
+					</td>
+					<td class="item-price">
+						120 грн.
+					</td>
+				</tr>
+			<% end %>
 		</tbody>
 		<tfoot>
 			<tr>
@@ -73,10 +36,12 @@
 					Всего:
 				</td>
 				<td id="item-count">
-					4 плаката
+					 <%= @buys.count.to_s + " " + pluralize_russian(@buys.count, "плакат", "плаката", "плакатов") %>
 				</td>
 				<td id="total-price">
-					1240 грн.
+					<% sum = 0 %>
+					<% @buys.each {|oi| sum += oi.poster.price.to_i} %>
+					<%= sum %> грн.
 				</td>
 			</tr>
 		</tfoot>

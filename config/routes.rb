@@ -1,9 +1,10 @@
 Posters::Application.routes.draw do
   root to: "store#home", as: "store"
   
+  match "/add-to-cart" => "store#add_to_cart"
   match "/cart" => "store#cart"
   match "/search" => "store#search"
-  match "/store/get_ss" => "store#get_ss"
+  match "/store/get-ss" => "store#get_ss"
   match "/tags/:url" => "store#home"
   match "/posters/:id" => "store#item"
 	match "/posters/:id-:url" => "store#item"

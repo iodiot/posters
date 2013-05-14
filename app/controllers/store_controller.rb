@@ -2,7 +2,9 @@ class StoreController < ApplicationController
 	include Toolkit
 	
 	helper_method :pluralize_russian
-
+	
+	before_filter :check_order
+	
 	def initialize
 		super
 	end
@@ -23,9 +25,23 @@ class StoreController < ApplicationController
   	@categories = Tag.all
   end
   
+  def add_to_cart
+  	order = Order.find(session[:order_id])
+  
+ 		buy = Buy.new(poster_id: params["poster-id"], 
+ 			paper_size: params["paper-size"], paper_bg: params["paper-bg"], quantity: 1)
+ 			
+		order.buys << buy
+		order.save! 		
+ 			
+ 		redirect_to action: :cart
+  end
+  
   def cart
    	@body_class = ""
     @categories = Tag.all   
+    
+    @buys = Order.find(session[:order_id]).buys
   end
   
   def get_ss
@@ -42,4 +58,14 @@ class StoreController < ApplicationController
   	
 		render action: :home
   end
+  
+	private
+	
+	def check_order
+  	if session[:order_id].nil? || !Order.exists?(session[:order_id])
+  		order = Order.new
+  		order.save!
+  		session[:order_id] = order.id
+  	end
+	end
 end
