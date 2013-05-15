@@ -1,6 +1,7 @@
 Posters::Application.routes.draw do
   root to: "store#home", as: "store"
   
+  match "/checkout" => "store#checkout"
   match "/remove-from-cart" => "store#remove_from_cart"
   match "/add-to-cart" => "store#add_to_cart"
   match "/cart" => "store#cart"

@@ -33,7 +33,7 @@
 						</p>
 					</td>
 					<td class="item-price">
-						120 грн.
+						<%= b.poster.price.to_i %> грн.
 					</td>
 				</tr>
 			<% end %>
@@ -57,39 +57,43 @@
 </div>
 
 <div class="page800" id="checkout">
-	<p>Заказ доставит «<a href="http://novaposhta.ua/" target="_blank">Новая почта</a>».</p>
+	<p>Заказ доставит «<%= link_to "Новая почта", "http://novaposhta.ua/", target: "_blank" %>».</p>
 	<p>Оплата — <strong>наложенным платежом</strong> (то есть, аж когда плакаты будут у вас).</p>
 	
-	<form id="checkout-form">
+	<%= form_tag "/checkout", method: "post", id: "checkout-table" do %>
 	
 		<table id="checkout-table">
 		<tbody>
 		<tr>
-			<td class="label-cell"><label for="name">Имя <b title="Обязательное поле">•</b></label></td>
-			<td><input type="text" id="name" name="name" value="" maxlength="250"></td>
+			<td class="label-cell"><%= label_tag "name" do %>Имя <b title="Обязательное поле">•</b><% end %></td>
+			<td><%= text_field_tag "name", "", maxlength: 250 %></td>
 		</tr>
 		<tr>
-			<td class="label-cell"><label for="email">E-mail <b title="Обязательное поле">•</b></label></td>
-			<td><input type="text" id="email" name="email" value="" maxlength="250"></td>
+			<td class="label-cell"><%= label_tag "email" do %>E-mail <b title="Обязательное поле">•</b><% end %></td>
+			<td><%= text_field_tag "email", "", maxlength: 250 %></td>
 		</tr>
 		<tr>
-			<td class="label-cell"><label for="phone">Телефон <b title="Обязательное поле">•</b></label></td>
-			<td><input type="text" id="phone" name="phone" value="" maxlength="250"></td>
+			<td class="label-cell"><%= label_tag "phone" do %>Телефон <b title="Обязательное поле">•</b><% end %></td>
+			<td><%= text_field_tag "phone", "", maxlength: 250 %></td>
 		</tr>
 		<tr>
-			<td class="label-cell"><label for="address">Адрес доставки <b title="Обязательное поле">•</b></label></td>
-			<td><input type="text" id="address" name="address" value="" maxlength="250"></td>
-			</tr>
+			<td class="label-cell"><%= label_tag "phone" do %>Адрес доставки <b title="Обязательное поле">•</b><% end %></td>
+			<td><%= text_field_tag "address", "", maxlength: 250 %></td>
+		</tr>
 		<tr>
-			<td class="label-cell"><label for="message">Примечания к заказу <em>Любые дополнительные пожелания или вопросы; ответим на указанный e-mail.</em></label></td>
-			<td><textarea class="text" name="message" id="message"></textarea></td>
+			<td class="label-cell"><%= label_tag "message" do %>Примечания к заказу <em>Любые дополнительные пожелания или вопросы; ответим на указанный e-mail.</em><% end %></td>
+			<td><%= text_area_tag "message", "" %></td>
 		</tr>
 		<tr>
 			<td class="label-cell"></td>
-			<td class="button-cell"><button class="big-button" id="checkout-button" name="checkout-button">Оформить заказ</button><em>Мы позвоним, чтоб всё согласовать.</em></td>
+			<td class="button-cell">
+				<%= button_tag "Оформить заказ", class: "big-button", id: "checkout-button", name: "checkout-button" %>
+				<em>Мы позвоним, чтоб всё согласовать.</em>
+			</td>
 		</tr>
 		</tbody>
-		</table>
-		
-	</form>
+		</table>		
+	
+	<% end %>
+	
 </div>

@@ -3,7 +3,7 @@ class StoreController < ApplicationController
 	
 	helper_method :pluralize_russian
 	
-	before_filter :check_order
+	before_filter :check_current_order
 	
 	def initialize
 		super
@@ -11,9 +11,10 @@ class StoreController < ApplicationController
 
   def home
   	@body_class = "long-page"
-    @order = params[:order] || "mysterious"
+  	
+    @sorting = params[:sorting] || "mysterious"
 		  	 	
-  	@posters = Poster.order(@order == "new" ? :updated_at : "RANDOM()").page(params[:page]).per(12)
+  	@posters = Poster.order(@sorting == "new" ? :updated_at : "RANDOM()").page(params[:page]).per(12)
   	
   	@posters_count = Poster.count
   	@categories = Tag.all
@@ -26,7 +27,7 @@ class StoreController < ApplicationController
   end
   
   def add_to_cart
-  	order = Order.find(session[:order_id])
+  	order = get_current_order
   	
   	buy = Buy.new(poster_id: params["poster-id"], 
  			paper_size: params["paper-size"], paper_bg: params["paper-bg"], quantity: 1)
@@ -56,9 +57,27 @@ class StoreController < ApplicationController
   
   def cart
    	@body_class = ""
+   	
     @categories = Tag.all   
     
-    @buys = Order.find(session[:order_id]).buys
+    order = get_current_order
+    @buys = order.placed ? [] : order.buys
+  end
+  
+  def checkout
+  	# user entered all fields?
+  	@name = params[:name] || ""
+  	@email = params[:email] || ""
+  	@phone = params[:phone] || ""
+  	@address = params[:address] || ""
+  
+  	order = get_current_order
+  	order.placed = true
+  	order.save!
+  	
+  	flush_current_order
+  	
+  	redirect_to action: :home
   end
   
   def get_ss
@@ -66,7 +85,7 @@ class StoreController < ApplicationController
   end
   
   def search
-   	@order = params[:order] || "mysterious"
+   	@sorting = params[:sorting] || "mysterious"
    	@search_string = params["input-search"] || ""
    	@posters = Poster.search(@search_string)
    	@posters = Kaminari.paginate_array(@posters).page(params[:page]).per(12)
@@ -78,11 +97,20 @@ class StoreController < ApplicationController
   
 	private
 	
-	def check_order
+	def check_current_order
   	if session[:order_id].nil? || !Order.exists?(session[:order_id])
   		order = Order.new
   		order.save!
   		session[:order_id] = order.id
   	end
+	end
+	
+	def get_current_order
+		Order.find(session[:order_id])
+	end
+	
+	def flush_current_order
+		get_current_order = nil 
+		session[:order_id] = nil
 	end
 end
