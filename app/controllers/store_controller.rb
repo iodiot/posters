@@ -9,6 +9,27 @@ class StoreController < ApplicationController
 		super
 	end
 	
+	def change_quantity
+    order = get_current_order
+    @buys = order.placed ? [] : order.buys
+    id = params["id"].to_i
+    value = params["value"].to_i
+    value = 1 if value < 1
+    value = 100 if value > 100
+    @buys.each do |b|
+    	if b.id == id
+    		b.quantity = value
+    		b.save!
+    		order.save!
+    		break
+    	end
+    end
+    
+    count_buys
+
+		render text: (render_to_string partial: "shared/cart_list")
+	end
+	
 	def filter_by_tag
 		if @tag.nil?
 			redirect_to action: :home
@@ -28,14 +49,13 @@ class StoreController < ApplicationController
 
   def home 
   	@body_class = "long-page"
+  	@safemode_visible = true
   	
   	@posters = get_posters.page(@page).per(12) 	
   	@posters_count = Poster.count
   end
   
   def item
-  	@body_class = ""
-  	
   	@poster = Poster.find(params["id"])
   	@tags = Tag.all
   end
@@ -70,8 +90,8 @@ class StoreController < ApplicationController
   end
   
   def cart
-   	@body_class = ""
-    
+ 		@cart_chosen = true
+  
     order = get_current_order
     @buys = order.placed ? [] : order.buys
   end
@@ -126,7 +146,9 @@ class StoreController < ApplicationController
 	end
 	
 	def count_buys
-		@buys_count = get_current_order.buys.count
+		@buys_count = 0
+		get_current_order.buys.each {|b| @buys_count += b.quantity}
+		@buys_count
 	end
 	
 	def get_posters
@@ -134,6 +156,9 @@ class StoreController < ApplicationController
 	end
 	
 	def define_variables
+		@cart_chosen = false
+		@safemode_visible = false
+		@body_class = ""
    	@sorting = params["sorting"] || "mysterious"
    	@search_string = params["input-search"] || ""
     @tag = params["tag"].nil? ? nil : Tag.find_by_url(params["tag"])

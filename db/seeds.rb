@@ -28,6 +28,7 @@ suggestions.each {|s| SearchSuggestion.create(title: s)}
 t1 = Tag.create(name: "Кошки", url: "cats")
 t2 = Tag.create(name: "Игры", url: "games", icon: "games.png")
 t3 = Tag.create(name: "Космос", url: "space", icon: "star.png")
+t4 = Tag.create(name: "Apple", url: "apple", icon: "apple.png")
 
 (1..101).each do
 	p1 = Poster.create(title: "Кот и оранжевый портал",	description: "Много оранжевого цвета.", price: 120.0, image: "orange_portal.jpg", censored: Random.rand(2) == 0, url: "cat-and-orange-portal")

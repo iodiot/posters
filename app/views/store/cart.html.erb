@@ -5,55 +5,7 @@
 </div>
 
 <div id="cart-details">
-	<table id="cart-list">
-		<tbody>
-			<% @buys.each do |b| %>
-				<tr>
-					<td class="item-img">
-						<%= link_to "/posters/#{b.poster.id}-#{b.poster.url}" do %>
-							<%= image_tag "posters/" + b.poster.image %>
-						<% end %>
-					</td>
-					<td class="item-details">
-						<h2><%= link_to b.poster.title, "/posters/#{b.poster.id}-#{b.poster.url}" %></h2>
-						<p class="cart-item-details">
-							Размер: <strong><%= b.paper_size %></strong><br/>
-							Вариант: <strong><%= b.paper_bg %></strong>								
-						</p>
-					</td>
-					<td class="item-quantity">
-						<p>
-							<input type="text" value="<%= b.quantity %>">
-							<span>шт. × <%= b.poster.price.to_i %> грн.</span>
-						</p>
-						<p>
-							<%= link_to "/remove-from-cart?id=#{b.id}", class: "remove-item" do %>
-								<i>×</i> <u>удалить</u></a>
-							<% end %>
-						</p>
-					</td>
-					<td class="item-price">
-						<%= b.poster.price.to_i %> грн.
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="2" id="total">
-					Всего:
-				</td>
-				<td id="item-count">
-					 <%= @buys.count.to_s + " " + pluralize_russian(@buys.count, "плакат", "плаката", "плакатов") %>
-				</td>
-				<td id="total-price">
-					<% sum = 0 %>
-					<% @buys.each {|oi| sum += oi.poster.price.to_i} %>
-					<%= sum %> грн.
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+<%= render "shared/cart_list" %>
 </div>
 
 <div class="page800" id="checkout">

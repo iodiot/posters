@@ -9,10 +9,11 @@
 			<li><a href="#">про нас</a></li>
 			<li><a href="#">про доставку и оплату</a></li>
 		</ul>
-		<label class="toggle" title="Включите, чтобы спрятать всяческую непристойность">
-			Безопасный режим<input type="checkbox" id="safemode" /><span><b></b></span>
-			
-		</label>
+		<% if @safemode_visible %>
+			<label class="toggle" title="Включите, чтобы спрятать всяческую непристойность">
+				Безопасный режим<input type="checkbox" id="safemode" /><span><b></b></span>
+			</label>
+		<% end %>
 	</div>
 	<hr />
 </header>

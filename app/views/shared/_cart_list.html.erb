@@ -1,0 +1,50 @@
+<table id="cart-list">
+	<tbody>
+		<% @buys.each do |b| %>
+			<tr>
+				<td class="item-img">
+					<%= link_to "/posters/#{b.poster.id}-#{b.poster.url}" do %>
+						<%= image_tag "posters/" + b.poster.image %>
+					<% end %>
+				</td>
+				<td class="item-details">
+					<h2><%= link_to b.poster.title, "/posters/#{b.poster.id}-#{b.poster.url}" %></h2>
+					<p class="cart-item-details">
+						Размер: <strong><%= b.paper_size %></strong><br/>
+						Вариант: <strong>На <%= b.paper_bg == "white" ? "белом" : (b.paper_bg == "black" ? "черном" : "сером") %> фоне</strong>								
+					</p>
+				</td>
+				<td class="item-quantity">
+					<p>
+						<%= text_field_tag b.id, b.quantity, class: "quantity", name: "quantity" %>
+						<span>шт. × <%= b.poster.price.to_i %> грн.</span>
+					</p>
+					<p>
+						<%= link_to "/remove-from-cart?id=#{b.id}", class: "remove-item" do %>
+							<i>×</i> <u>удалить</u></a>
+						<% end %>
+					</p>
+				</td>
+				<td class="item-price">
+					<%= b.poster.price.to_i * b.quantity %> грн.
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="2" id="total">
+				Всего:
+			</td>
+			<td id="item-count">
+				 <%= @buys_count.to_s + " " + pluralize_russian(@buys_count, "плакат", "плаката", "плакатов") %>
+			</td>
+			<td id="total-price">
+				<% sum = 0 %>
+				<% @buys.each {|b| sum += b.poster.price.to_i * b.quantity } %>
+				<%= sum %> грн.
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
