@@ -4,13 +4,15 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   cities = City.create([{ name: "Chicago" }, { name: "Copenhagen" }])
+#   Mayor.create(name: "Emanuel", city: cities.first)
 
 Poster.delete_all
 Tag.delete_all
 PosterTagItem.delete_all
 SearchSuggestion.delete_all
+Order.delete_all
+Buy.delete_all
 
 # TEST DATA
 
@@ -23,14 +25,14 @@ suggestions = [	"God of War", "осторожно", "собака", "кин-дз
 							
 suggestions.each {|s| SearchSuggestion.create(title: s)}
 
-t1 = Tag.create(name: 'Кошки', url: 'cats')
-t2 = Tag.create(name: 'Игры', url: 'games')
-t3 = Tag.create(name: 'Космос', url: 'space')
+t1 = Tag.create(name: "Кошки", url: "cats")
+t2 = Tag.create(name: "Игры", url: "games", icon: "games.png")
+t3 = Tag.create(name: "Космос", url: "space", icon: "star.png")
 
 (1..101).each do
-	p1 = Poster.create(title: 'Кот и оранжевый портал',	description: 'Много оранжевого цвета.', price: 120.0, image: 'orange_portal.jpg', censored: Random.rand(2) == 0, url: 'cat-and-orange-portal')
-	p2 = Poster.create(title: 'Кот и синий портал', 		description: 'Много синего цвета.', price: 120.0, image: 'blue_portal.jpg', censored: Random.rand(2) == 0, url: 'cat-and-blue-portal')
-	p3 = Poster.create(title: 'Окончательный ответ',		description: 'Как известно, окончательный ответ -- это число 42.', price: 100.0, image: '42.jpg', censored: Random.rand(2) == 0, url: '42') 
+	p1 = Poster.create(title: "Кот и оранжевый портал",	description: "Много оранжевого цвета.", price: 120.0, image: "orange_portal.jpg", censored: Random.rand(2) == 0, url: "cat-and-orange-portal")
+	p2 = Poster.create(title: "Кот и синий портал", 		description: "Много синего цвета.", price: 120.0, image: "blue_portal.jpg", censored: Random.rand(2) == 0, url: "cat-and-blue-portal")
+	p3 = Poster.create(title: "Окончательный ответ",		description: "Как известно, окончательный ответ -- это число 42.", price: 100.0, image: "42.jpg", censored: Random.rand(2) == 0, url: "42") 
 	
 	p1.tags << t1 << t2
 	p2.tags << t1 << t2

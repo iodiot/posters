@@ -1,9 +1,9 @@
 <div class="page" id="page-title">
-	<div id="page-icon-before"></div><%= image_tag "icons/all.png", :id => "page-icon" %><div id="page-icon-after"></div>
+	<div id="page-icon-before"></div><%= image_tag @tag.nil? || @tag.icon.empty? ? "icons/all.png" : "icons/#{@tag.icon}", :id => "page-icon" %><div id="page-icon-after"></div>
 	<!--<h3>Корзина</h3>
 	<h4><a href="#">« Вернуться к плакатам</a></h4>-->
 	
-	<h3>Все подряд</h3>
+	<h3><%= @tag.nil? ? "Все подряд" : @tag.name %></h3>
 	<h4>У нас <strong><%= @posters_count.to_s + " " + pluralize_russian(@posters_count, "плакат", "плаката", "плакатов") %></strong>, и мы постоянно придумываем новые!</h4>
 	<div class="switch" id="sorting">
 		<%= link_to "по дате", {sorting: "new"}, class: @sorting == "new" ?"chosen" : "" %> 

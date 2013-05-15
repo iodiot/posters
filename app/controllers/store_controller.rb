@@ -3,27 +3,41 @@ class StoreController < ApplicationController
 	
 	helper_method :pluralize_russian
 	
-	before_filter :check_current_order
+	before_filter :check_current_order, :count_buys, :define_variables
 	
 	def initialize
 		super
 	end
+	
+	def filter_by_tag
+		if @tag.nil?
+			redirect_to action: :home
+			return
+		end 
+	
+  	@body_class = "long-page"
 
-  def home
+  	@posters = get_posters
+  	@posters = @posters.select {|p| p.tags.include?(@tag)}
+  	@posters_count = @posters.count	# save count before pagination
+  	@posters = Kaminari.paginate_array(@posters).page(@page).per(12)
+  	
+  	render action: :home
+	end
+	
+
+  def home 
   	@body_class = "long-page"
   	
-    @sorting = params[:sorting] || "mysterious"
-		  	 	
-  	@posters = Poster.order(@sorting == "new" ? :updated_at : "RANDOM()").page(params[:page]).per(12)
-  	
+  	@posters = get_posters.page(@page).per(12) 	
   	@posters_count = Poster.count
-  	@categories = Tag.all
   end
   
   def item
   	@body_class = ""
-  	@poster = Poster.find(params[:id])
-  	@categories = Tag.all
+  	
+  	@poster = Poster.find(params["id"])
+  	@tags = Tag.all
   end
   
   def add_to_cart
@@ -57,8 +71,6 @@ class StoreController < ApplicationController
   
   def cart
    	@body_class = ""
-   	
-    @categories = Tag.all   
     
     order = get_current_order
     @buys = order.placed ? [] : order.buys
@@ -85,12 +97,11 @@ class StoreController < ApplicationController
   end
   
   def search
-   	@sorting = params[:sorting] || "mysterious"
-   	@search_string = params["input-search"] || ""
+  	@body_class = "long-page"
+
    	@posters = Poster.search(@search_string)
-   	@posters = Kaminari.paginate_array(@posters).page(params[:page]).per(12)
   	@posters_count = @posters.count
-  	@categories = Tag.all
+   	@posters = Kaminari.paginate_array(@posters).page(@page).per(12)
   	
 		render action: :home
   end
@@ -112,5 +123,22 @@ class StoreController < ApplicationController
 	def flush_current_order
 		get_current_order = nil 
 		session[:order_id] = nil
+	end
+	
+	def count_buys
+		@buys_count = get_current_order.buys.count
+	end
+	
+	def get_posters
+		Poster.order(@sorting == "new" ? :updated_at : "RANDOM()")
+	end
+	
+	def define_variables
+   	@sorting = params["sorting"] || "mysterious"
+   	@search_string = params["input-search"] || ""
+    @tag = params["tag"].nil? ? nil : Tag.find_by_url(params["tag"])
+    @page = params[:page] || 0
+    
+    @tags = Tag.all
 	end
 end

@@ -3,7 +3,7 @@
 	<div id="cart">
 		<%= link_to "/cart", class: "navblock" do %>
 			<u>Корзина</u>
-			<i id="cart-counter">пусто</i>
+			<i id="cart-counter"><%= @buys_count > 0 ? @buys_count.to_s + " " + pluralize_russian(@buys_count, "плакат", "плаката", "плакатов") : "пусто" %></i>
 		<% end %>
 		<a id="goto-checkout" href="#">Оформить заказ<b></b></a>
 	</div>
@@ -29,10 +29,10 @@
 		
 		<li class="divider"> </li>
 		
-		<% @categories.each do |c| %>
+		<% @tags.each do |t| %>
 			<li>
-			<%= link_to "/tags/#{c.url}" do %>
-			<u><%= c.name %></u><i><%= " #{c.posters.count}" %></i>
+			<%= link_to "/tags/#{t.url}" do %>
+			<u><%= t.name %></u><i><%= " #{t.posters.count}" %></i>
 			<% end %>
 			</li>
 		<% end %> 

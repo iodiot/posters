@@ -7,7 +7,8 @@ Posters::Application.routes.draw do
   match "/cart" => "store#cart"
   match "/search" => "store#search"
   match "/store/get-ss" => "store#get_ss"
-  match "/tags/:url" => "store#home"
+  match "/tags/:tag" => "store#filter_by_tag"
+  match "/tags" => "store#home"
   match "/posters/:id" => "store#item"
 	match "/posters/:id-:url" => "store#item"
 
