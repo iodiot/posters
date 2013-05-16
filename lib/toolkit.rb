@@ -2,7 +2,7 @@ require 'RMagick'
 
 module Toolkit
 	def censore_poster_images(posters)
-		Dir.chdir 'public/images/posters' do
+		Dir.chdir "#{Rails.root.to_s}/public/images/posters/" do
 			posters.each do |p|
 				if p.censored 
 					image = Magick::Image::read(p.image).first
