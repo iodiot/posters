@@ -14,8 +14,12 @@ class StoreController < ApplicationController
     @buys = order.placed ? [] : order.buys
     id = params["id"].to_i
     value = params["value"].to_i
+    
+    # clamp
     value = 1 if value < 1
-    value = 100 if value > 100
+    value = 10 if value > 10
+    
+   	# update quantity and save 
     @buys.each do |b|
     	if b.id == id
     		b.quantity = value
@@ -97,14 +101,15 @@ class StoreController < ApplicationController
   end
   
   def checkout
-  	# user entered all fields?
-  	@name = params[:name] || ""
-  	@email = params[:email] || ""
-  	@phone = params[:phone] || ""
-  	@address = params[:address] || ""
-  
   	order = get_current_order
+  	
+  	order.name = params["name"]
+  	order.email = params["email"]
+  	order.phone = params["phone"]
+  	order.address = params["address"]
+  	order.message = params["message"]
   	order.placed = true
+  	
   	order.save!
   	
   	flush_current_order
