@@ -53,13 +53,14 @@ class StoreController < ApplicationController
 
   def home 
   	@body_class = "long-page"
-  	@safemode_visible = true
   	
   	@posters = get_posters.page(@page).per(12) 	
   	@posters_count = Poster.count
   end
   
   def item
+  	  	@safemode_visible = false
+  
   	@poster = Poster.find(params["id"])
   	@tags = Tag.all
   end
@@ -95,12 +96,13 @@ class StoreController < ApplicationController
   
   def cart
  		@cart_chosen = true
+  	@safemode_visible = false
   
     order = get_current_order
     @buys = order.placed ? [] : order.buys
   end
   
-  def checkout
+  def checkout  
   	order = get_current_order
   	
   	order.name = params["name"]
@@ -114,7 +116,8 @@ class StoreController < ApplicationController
   	
   	flush_current_order
   	
-  	redirect_to action: :home
+  	#redirect_to action: :home
+  	render xml: order	# debug
   end
   
   def get_ss
@@ -162,12 +165,13 @@ class StoreController < ApplicationController
 	
 	def define_variables
 		@cart_chosen = false
-		@safemode_visible = false
+		@safemode_visible = true
 		@body_class = ""
    	@sorting = params["sorting"] || "mysterious"
    	@search_string = params["input-search"] || ""
     @tag = params["tag"].nil? ? nil : Tag.find_by_url(params["tag"])
     @page = params[:page] || 0
+    @return_to = request.referer
     
     @tags = Tag.all
 	end

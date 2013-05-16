@@ -1,7 +1,7 @@
 <div class="page" id="nav">
 
 	<div id="cart">
-		<%= link_to "/cart", class: @cart_chosen ? "navblock chosen" : "navblock" do %>
+		<%= link_to @cart_chosen ? @return_to : "/cart", class: @cart_chosen ? "navblock chosen" : "navblock" do %>
 			<u>Корзина</u>
 			<% if !@cart_chosen %>
 				<i id="cart-counter"><%= @buys_count > 0 ? @buys_count.to_s + " " + pluralize_russian(@buys_count, "плакат", "плаката", "плакатов") : "пусто" %></i>
