@@ -1,7 +1,9 @@
 <div class="page800" id="page-title">
 	<div id="page-icon-before"></div><%= image_tag "icons/cart.png", :id => "page-icon" %><div id="page-icon-after"></div>
 	<h3>Корзина</h3>
-	<a id="link-back" class="tag-like" href="/"><em class="arrow">←</em> <span>Вернуться к выбору плакатов</span></a>
+	<%= link_to @return_to , class: "tag-like", id: "link-back" do %>
+		<em class="arrow">←</em> <span>Вернуться к выбору плакатов</span>
+	<% end %>
 </div>
 
 <div id="cart-details">

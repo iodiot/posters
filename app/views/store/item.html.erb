@@ -1,6 +1,6 @@
 <div class="page" id="page-title">
 	<div id="page-icon-before"></div><%= image_tag "icons/games.png", :id => "page-icon" %><div id="page-icon-after"></div>
-	<%= link_to @return_to.empty? ? "/" : @return_to, id: "link-back", class: "tag-like" do %>
+	<%= link_to @return_to, id: "link-back", class: "tag-like" do %>
 		<em class="arrow">↑</em> <span>Вернуться в категорию Игры</span> <em class="arrow">↑</em>
 	<% end %>
 </div>

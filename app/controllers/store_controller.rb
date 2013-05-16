@@ -34,6 +34,10 @@ class StoreController < ApplicationController
 		render text: (render_to_string partial: "shared/cart_list")
 	end
 	
+	def order
+		@word = params["word"]
+	end
+	
 	def filter_by_tag
 		if @tag.nil?
 			redirect_to action: :home
@@ -59,10 +63,16 @@ class StoreController < ApplicationController
   end
   
   def item
-  	  	@safemode_visible = false
+  	@safemode_visible = false
+  	
+  	id = params[:id] || -1
+  	
+  	if !Poster.exists?(id)
+  		redirect_to action: :home
+			return
+  	end
   
-  	@poster = Poster.find(params["id"])
-  	@tags = Tag.all
+  	@poster = Poster.find(id)
   end
   
   def add_to_cart
@@ -114,10 +124,11 @@ class StoreController < ApplicationController
   	
   	order.save!
   	
+  	w = order.word
+  	
   	flush_current_order
   	
-  	#redirect_to action: :home
-  	render xml: order	# debug
+  	redirect_to "/orders/#{w}"
   end
   
   def get_ss
@@ -170,8 +181,9 @@ class StoreController < ApplicationController
    	@sorting = params["sorting"] || "mysterious"
    	@search_string = params["input-search"] || ""
     @tag = params["tag"].nil? ? nil : Tag.find_by_url(params["tag"])
-    @page = params[:page] || 0
-    @return_to = request.referer
+    @page = params["page"] || 0
+    @return_to = "/"
+    @return_to = request.referer unless request.referer.nil? 
     
     @tags = Tag.all
 	end

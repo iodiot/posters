@@ -1,0 +1,4 @@
+<div class="page" id="page-title">
+	<div id="page-icon-before"></div><%= image_tag @tag.nil? || @tag.icon.empty? ? "icons/all.png" : "icons/#{@tag.icon}", :id => "page-icon" %><div id="page-icon-after"></div>
+	<h3><%= "Вашему заказу присвоено уникальное название: " + @word %></h3>
+</div>
