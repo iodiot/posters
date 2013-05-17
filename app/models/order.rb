@@ -1,5 +1,3 @@
-require "random_word_generator"
-
 class Order < ActiveRecord::Base
   attr_accessible :address, :email, :name, :message, :phone, :placed, :word
   has_many :buys
@@ -12,6 +10,6 @@ class Order < ActiveRecord::Base
   private
   
   def assign_unique_word
-  	self.word = "FUCK" #RandomWordGenerator.word
+  	self.word = "FUCK" 
   end
 end
