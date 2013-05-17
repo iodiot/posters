@@ -48,6 +48,3 @@ gem "rmagick"
 
 # Unicode support (replacement for String.upcase, for example)
 gem "unicode"
-
-gem "random-word-generator"
-

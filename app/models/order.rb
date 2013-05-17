@@ -12,6 +12,6 @@ class Order < ActiveRecord::Base
   private
   
   def assign_unique_word
-  	self.word = RandomWordGenerator.word
+  	self.word = "FUCK" #RandomWordGenerator.word
   end
 end
