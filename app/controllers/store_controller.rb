@@ -128,7 +128,8 @@ class StoreController < ApplicationController
   	
   	flush_current_order
   	
-  	redirect_to "/orders/#{w}"
+  	render xml: params
+  	#redirect_to "/orders/#{w}"
   end
   
   def get_ss
