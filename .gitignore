@@ -16,5 +16,4 @@
 
 /message
 /public/assets
-/log/application
-/public/images/posters/CENSORED_*
+# /public/images/posters/CENSORED_*
