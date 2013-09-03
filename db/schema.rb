@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516123745) do
+ActiveRecord::Schema.define(:version => 20130903133855) do
 
   create_table "buys", :force => true do |t|
     t.integer  "poster_id"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(:version => 20130516123745) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "placed",     :default => false
-    t.string   "word",       :default => ""
   end
 
   create_table "poster_tag_items", :force => true do |t|

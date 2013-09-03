@@ -1,15 +1,4 @@
 class Order < ActiveRecord::Base
-  attr_accessible :address, :email, :name, :message, :phone, :placed, :word
+  attr_accessible :address, :email, :name, :message, :phone, :placed
   has_many :buys
-  
-  def initialize
-  	super
-  	assign_unique_word
-  end
-  
-  private
-  
-  def assign_unique_word
-  	self.word = "FUCK" 
-  end
 end

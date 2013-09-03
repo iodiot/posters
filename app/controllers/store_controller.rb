@@ -35,7 +35,9 @@ class StoreController < ApplicationController
 	end
 	
 	def order
-		@word = params["word"]
+  	@id = params[:id] || -1
+  	
+  	@order = Order.find(@id)
 	end
 	
 	def filter_by_tag
@@ -81,7 +83,7 @@ class StoreController < ApplicationController
   	buy = Buy.new(poster_id: params["poster-id"], 
  			paper_size: params["paper-size"], paper_bg: params["paper-bg"], quantity: 1)
   	
-  	# increase quantity of existing buyment if possible
+  	# increase quantity of already existing buyment if possible
   	found = false
   	order.buys.each do |b| 
   		b.equal_to?(buy)
@@ -124,12 +126,10 @@ class StoreController < ApplicationController
   	
   	order.save!
   	
-  	w = order.word
-  	
   	flush_current_order
   	
-  	render xml: params
-  	#redirect_to "/orders/#{w}"
+  	#render xml: params
+  	redirect_to "/orders/#{order.id}"
   end
   
   def get_ss

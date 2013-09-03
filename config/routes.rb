@@ -1,7 +1,7 @@
 Posters::Application.routes.draw do
   root to: "store#home", as: "store"
   
-  match "/orders/:word" => "store#order"
+  match "/orders/:id" => "store#order"
   match "/change-quantity" => "store#change_quantity"
   match "/checkout" => "store#checkout"
   match "/remove-from-cart" => "store#remove_from_cart"
