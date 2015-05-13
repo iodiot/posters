@@ -1,2 +1,2 @@
-== Posters 
+# Posters 
 Online store with posters.
